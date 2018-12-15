@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-func StartList() {
+func StartListSort() {
 	reader := bufio.NewReader(os.Stdin)
 
 	cmd.Println("Create list by writing numbers using Enter and print 's' to sort the list. Use 'q' to quit")
