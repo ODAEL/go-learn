@@ -1,6 +1,6 @@
 package main
 
-import "studyGo/tutorial"
+import "go-learn/tutorial"
 
 func main() {
 	tutorial.Start()

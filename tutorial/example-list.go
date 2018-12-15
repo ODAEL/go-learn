@@ -1,9 +1,9 @@
 package tutorial
 
 import (
+	"go-learn/cmd"
+	"go-learn/tutorial/example"
 	"strconv"
-	"studyGo/cmd"
-	"studyGo/tutorial/example"
 )
 
 var examples = map[int]exampleItem{
