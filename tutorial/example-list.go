@@ -17,6 +17,11 @@ var examples = map[int]exampleItem{
 		"Panic Attack The Game",
 		example.StartPanicAttack,
 	},
+	3: exampleItem{
+		"rot13",
+		"Encode string with rot13 encoding",
+		example.StartRot13,
+	},
 }
 
 func printExamplesMap() {
