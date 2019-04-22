@@ -32,7 +32,7 @@ func StartListSort() {
 			break
 
 		case strings.Compare(command, "s") == 0:
-			myList = *myList.Sort()
+			myList = *myList.QSort()
 			fmt.Println(myList.GetSlice())
 			break
 

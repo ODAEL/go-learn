@@ -1,18 +1,20 @@
 package list
 
+import "reflect"
+
 type List struct {
-	First *Node
+	first *Node
 }
 
 func (l *List) Append(v int) {
 	n := Node{v, nil, nil}
 
-	if l.First == nil {
-		l.First = &n
+	if l.first == nil {
+		l.first = &n
 		return
 	}
 
-	m := l.First
+	m := l.first
 	for ; m.Next != nil; {
 		m = m.Next
 	}
@@ -23,35 +25,35 @@ func (l *List) Append(v int) {
 func (l *List) Prepend(v int) {
 	n := Node{v, nil, nil}
 
-	if l.First == nil {
-		l.First = &n
+	if l.first == nil {
+		l.first = &n
 		return
 	}
 
-	m := l.First
+	m := l.first
 	m.SetPrev(&n)
-	l.First = &n
+	l.first = &n
 }
 
 func (l *List) GetSlice() []int {
-	s := make([]int, 0)
+	var s []int
 
-	for m := l.First; m != nil; m = m.Next {
-		s = append(s, m.Value)
+	for n := l.first; !reflect.ValueOf(n).IsNil(); n = n.Next {
+		s = append(s, n.Value)
 	}
 
 	return s
 }
 
 func (l *List) PopFirst() int {
-	if l.First == nil {
+	if l.first == nil {
 		panic("List is empty")
 	}
 
-	p := l.First
-	l.First = p.Next
-	if l.First != nil {
-		l.First.Prev = nil
+	p := l.first
+	l.first = p.Next
+	if l.first != nil {
+		l.first.Prev = nil
 	}
 	p.Next = nil
 

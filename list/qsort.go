@@ -1,14 +1,16 @@
 package list
 
-func (l *List) Sort() *List {
-	ls := l.sortGetSeparatedNodes()
+import "reflect"
 
-	return sortRecursiveMerge(ls)
+func (l *List) QSort() *List {
+	ls := l.getNodesAsLists()
+
+	return qsortMerge(ls)
 }
 
-func (l *List) sortGetSeparatedNodes() []*List {
+func (l *List) getNodesAsLists() []*List {
 	s := make([]*List, 0)
-	for n := l.First; n != nil; {
+	for n := l.first; !reflect.ValueOf(n).IsNil(); {
 		m := n
 		n = n.Next
 
@@ -22,7 +24,7 @@ func (l *List) sortGetSeparatedNodes() []*List {
 	return s
 }
 
-func sortRecursiveMerge(ls []*List) *List {
+func qsortMerge(ls []*List) *List {
 	l := len(ls)
 	if l == 1 {
 		return ls[0]
@@ -39,27 +41,27 @@ func sortRecursiveMerge(ls []*List) *List {
 			s = ls[i+1]
 		}
 
-		ll = append(ll, sortMergeSorted(f, s))
+		ll = append(ll, qsortMergeSorted(f, s))
 	}
 
-	return sortRecursiveMerge(ll)
+	return qsortMerge(ll)
 }
 
-func sortMergeSorted(l, p *List) *List {
+func qsortMergeSorted(l, p *List) *List {
 	f := List{}
-	for ; p.First != nil || l.First != nil; {
+	for ; p.first != nil || l.first != nil; {
 
-		if p.First == nil {
+		if p.first == nil {
 			f.Append(l.PopFirst())
 			continue
 		}
 
-		if l.First == nil {
+		if l.first == nil {
 			f.Append(p.PopFirst())
 			continue
 		}
 
-		if p.First.Value > l.First.Value {
+		if p.first.Value > l.first.Value {
 			f.Append(l.PopFirst())
 		} else {
 			f.Append(p.PopFirst())

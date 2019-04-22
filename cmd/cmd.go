@@ -6,16 +6,16 @@ import (
 	"strings"
 )
 
-func Println(text string) {
-	fmt.Println(text)
+func EmptyLine() {
+	fmt.Println()
 }
 
 func Print(text string) {
 	fmt.Print(text)
 }
 
-func EmptyLine() {
-	fmt.Println()
+func Println(text string) {
+	fmt.Println(text)
 }
 
 func ReadString(reader *bufio.Reader) string {
