@@ -13,7 +13,7 @@ import (
 func StartListSort() {
 	reader := bufio.NewReader(os.Stdin)
 
-	cmd.Println("Create list by writing numbers using Enter and print 's' to sort the list. Use 'q' to quit")
+	fmt.Println("Create list by writing numbers using Enter and print 's' to sort the list. Use 'q' to quit")
 
 	myList := list.List{}
 
@@ -37,7 +37,7 @@ func StartListSort() {
 			break
 
 		default:
-			cmd.Println("Try another command")
+			fmt.Println("Try another command")
 			break
 		}
 	}

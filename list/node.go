@@ -8,18 +8,20 @@ type Node struct {
 	Prev  *Node
 }
 
-func (n *Node) SetPrev(m *Node) {
-	n.Prev = m
-	m.Next = n
+func (node *Node) SetPrev(prev *Node) {
+	node.Prev = prev
+
+	if prev != nil {
+		prev.Next = node
+	}
 }
 
-func (n *Node) String() string {
-	return fmt.Sprintf("%d", n.Value)
-}
+func (node *Node) SetNext(next *Node) {
+	node.Next = next
 
-func (n *Node) SetNext(m *Node) {
-	n.Next = m
-	m.Prev = n
+	if next != nil {
+		next.Prev = node
+	}
 }
 
 func SwapValues(n, m *Node) {
@@ -87,4 +89,8 @@ func swapNear(n, m *Node) {
 	if mn != nil {
 		mn.Prev = n
 	}
+}
+
+func (node Node) String() string {
+	return fmt.Sprintf("%v", node.Value)
 }

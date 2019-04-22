@@ -6,6 +6,17 @@ type List struct {
 	first *Node
 }
 
+func Create(values ...int) *List {
+	var next *Node
+	for i := len(values) - 1; i >= 0; i-- {
+		node := &Node{values[i], nil, nil}
+		node.SetNext(next)
+		next = node
+	}
+
+	return &List{next}
+}
+
 func (l *List) Append(v int) {
 	n := Node{v, nil, nil}
 
@@ -60,10 +71,6 @@ func (l *List) PopFirst() int {
 	return p.Value
 }
 
-func MakeBySlice(s []int) *List {
-	l := List{}
-	for _, v := range s {
-		l.Append(v)
-	}
-	return &l
+func CreateBySlice(s []int) *List {
+	return Create(s...)
 }

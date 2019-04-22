@@ -2,6 +2,7 @@ package tutorial
 
 import (
 	"bufio"
+	"fmt"
 	"go-learn/cmd"
 	"os"
 	"strconv"
@@ -15,8 +16,8 @@ const defises string = "---------------------------"
 func Start() {
 	reader := bufio.NewReader(os.Stdin)
 
-	cmd.Println(greetingText)
-	cmd.EmptyLine()
+	fmt.Println(greetingText)
+	fmt.Println()
 
 	printExamplesMap()
 	printListHint()
@@ -31,12 +32,12 @@ func Start() {
 				item.startFunction()
 				afterEnd(item.name)
 			} else {
-				cmd.Println("There is no such example")
+				fmt.Println("There is no such example")
 			}
 			break
 
 		case strings.Compare(command, "q") == 0:
-			cmd.Println("Bye!")
+			fmt.Println("Bye!")
 			return
 			break
 
@@ -45,20 +46,20 @@ func Start() {
 			break
 
 		default:
-			cmd.Println("Try another command")
+			fmt.Println("Try another command")
 			break
 		}
 	}
 }
 
 func printListHint() {
-	cmd.Println("Print the number and press Enter to select. You can always print this list with command 'l' and quit with 'q'")
+	fmt.Println("Print the number and press Enter to select. You can always print this list with command 'l' and quit with 'q'")
 }
 
 func beforeStart(exampleName string) {
-	cmd.Println(defises + " Start: " + exampleName + " " + defises)
+	fmt.Println(defises + " Start: " + exampleName + " " + defises)
 }
 
 func afterEnd(exampleName string) {
-	cmd.Println(defises + " End: " + exampleName + " " + defises)
+	fmt.Println(defises + " End: " + exampleName + " " + defises)
 }

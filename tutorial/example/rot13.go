@@ -2,6 +2,7 @@ package example
 
 import (
 	"bufio"
+	"fmt"
 	"go-learn/cmd"
 	"io"
 	"os"
@@ -11,8 +12,8 @@ import (
 func StartRot13() {
 	reader := bufio.NewReader(os.Stdin)
 
-	cmd.Println("Print a string to get rot13 encoding")
-	cmd.EmptyLine()
+	fmt.Println("Print a string to get rot13 encoding")
+	fmt.Println()
 
 	for {
 		command := cmd.ReadString(reader);
@@ -20,7 +21,7 @@ func StartRot13() {
 		switch {
 
 		case strings.Compare(command, "q") == 0:
-			cmd.Println("Bye!")
+			fmt.Println("Bye!")
 			return
 			break
 
@@ -28,7 +29,7 @@ func StartRot13() {
 			s := strings.NewReader(command)
 			r := rot13Reader{s}
 			io.Copy(os.Stdout, &r)
-			cmd.EmptyLine()
+			fmt.Println()
 			break
 		}
 	}

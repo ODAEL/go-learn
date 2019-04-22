@@ -1,54 +1,52 @@
 package list
 
 import (
-	"fmt"
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
-func TestMakeBySlice(t *testing.T) {
-	s := make([]int, 3)
-	s[0] = 0
-	s[1] = 1
-	s[2] = 2
+func TestCreate(t *testing.T) {
+	list := Create(1, 2, 3)
 
-	l := MakeBySlice(s)
+	node := list.first
+	assert.Nil(t, node.Prev)
+	assert.Equal(t, 1, node.Value)
 
-	one := l.first
-	fmt.Println(one.Prev)
-	assertNil(t, one.Prev)
-	assertSame(t, 0, one.Value)
+	node = node.Next
+	assert.Equal(t, 2, node.Value)
 
-	two := one.Next
-	assertSame(t, one, two.Prev)
-	assertSame(t, 1, two.Value)
-
-	three := two.Next
-	assertSame(t, two, three.Prev)
-	assertSame(t, 2, three.Value)
-	assertNil(t, three.Next)
+	node = node.Next
+	assert.Equal(t, 3, node.Value)
+	assert.Nil(t, node.Next)
 }
 
+func TestCreateBySlice(t *testing.T) {
+	slice := []int{1, 2, 3}
 
+	list := CreateBySlice(slice)
+
+	one := list.first
+	assert.Nil(t, one.Prev)
+	assert.Equal(t, 1, one.Value)
+
+	two := one.Next
+	assert.Equal(t, one, two.Prev)
+	assert.Equal(t, 2, two.Value)
+
+	three := two.Next
+	assert.Equal(t, two, three.Prev)
+	assert.Equal(t, 3, three.Value)
+	assert.Nil(t, three.Next)
+}
 
 func TestList_GetSlice(t *testing.T) {
-	one := Node{1, nil, nil}
-	two := Node{2, nil, nil}
-	three := Node{3, nil, nil}
+	list := Create(1, 2, 3)
 
-	l := List{&one}
-	one.Next = &two
-	two.Prev = &one
-	two.Next = &three
-	three.Prev = &two
+	slice := []int{1, 2, 3};
 
-	s := make([]int, 3);
-	s[0] = 1
-	s[1] = 2
-	s[2] = 3
+	ls := list.GetSlice()
 
-	ls := l.GetSlice()
-
-	assertSame(t, s[0], ls[0])
-	assertSame(t, s[1], ls[1])
-	assertSame(t, s[2], ls[2])
+	assert.Equal(t, slice[0], ls[0])
+	assert.Equal(t, slice[1], ls[1])
+	assert.Equal(t, slice[2], ls[2])
 }

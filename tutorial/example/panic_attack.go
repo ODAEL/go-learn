@@ -15,7 +15,7 @@ const winningScore int = 10
 
 func StartPanicAttack() {
 
-	cmd.Println("Panic Attack The Game. Press 'h' to get help")
+	fmt.Println("Panic Attack The Game. Press 'h' to get help")
 
 	// If nil then quit
 	defer func() {
@@ -78,7 +78,7 @@ func step(score int) {
 			break
 
 		default:
-			cmd.Println("You can use only 'a', 'd' and 'q' to quit")
+			fmt.Println("You can use only 'a', 'd' and 'q' to quit")
 			break
 		}
 	}

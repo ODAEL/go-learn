@@ -1,16 +1,25 @@
 package list
 
-import "reflect"
-
 func (l *List) QSort() *List {
-	ls := l.getNodesAsLists()
+	ls := l.qsortGetNodesAsLists()
 
 	return qsortMerge(ls)
 }
 
-func (l *List) getNodesAsLists() []*List {
+func (l *List) BSort() *List {
+	ls := l.GetSlice()
+
+	s := CreateBySlice(ls)
+
+	for ; bsortIteration(s) != false; {
+	}
+
+	return s
+}
+
+func (l *List) qsortGetNodesAsLists() []*List {
 	s := make([]*List, 0)
-	for n := l.first; !reflect.ValueOf(n).IsNil(); {
+	for n := l.first; n != nil; {
 		m := n
 		n = n.Next
 
@@ -69,4 +78,25 @@ func qsortMergeSorted(l, p *List) *List {
 
 	}
 	return &f
+}
+
+func bsortIteration(l *List) (wasSorted bool) {
+	wasSorted = false
+	n := l.first
+	for ; n.Next != nil; {
+		if n.Value > n.Next.Value {
+			swapNear(n, n.Next)
+			wasSorted = true
+		} else {
+			n = n.Next
+		}
+	}
+
+	for ; n.Prev != nil; {
+		n = n.Prev
+	}
+
+	l.first = n
+
+	return
 }
