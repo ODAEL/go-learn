@@ -3,15 +3,15 @@ package tutorial
 import (
 	"bufio"
 	"fmt"
-	"go-learn/cmd"
+	"go-learn/cmd/iohelper"
 	"os"
 	"strconv"
 	"strings"
 )
 
-const greetingText = "Hello! Please, select the example to start:"
+const greetingText = "Hello! Please, select the item to start:"
 
-const defises string = "---------------------------"
+const defies string = "---------------------------"
 
 func Start() {
 	reader := bufio.NewReader(os.Stdin)
@@ -23,7 +23,7 @@ func Start() {
 	printListHint()
 
 	for {
-		command := cmd.ReadString(reader);
+		command := iohelper.ReadString(reader);
 		exampleNumber, err := strconv.Atoi(command);
 		switch {
 		case err == nil:
@@ -32,7 +32,7 @@ func Start() {
 				item.startFunction()
 				afterEnd(item.name)
 			} else {
-				fmt.Println("There is no such example")
+				fmt.Println("There is no such item")
 			}
 			break
 
@@ -57,9 +57,9 @@ func printListHint() {
 }
 
 func beforeStart(exampleName string) {
-	fmt.Println(defises + " Start: " + exampleName + " " + defises)
+	fmt.Println(defies + " Start: " + exampleName + " " + defies)
 }
 
 func afterEnd(exampleName string) {
-	fmt.Println(defises + " End: " + exampleName + " " + defises)
+	fmt.Println(defies + " End: " + exampleName + " " + defies)
 }

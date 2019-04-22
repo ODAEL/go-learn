@@ -1,9 +1,9 @@
-package example
+package item
 
 import (
 	"bufio"
 	"fmt"
-	"go-learn/cmd"
+	"go-learn/cmd/iohelper"
 	"math"
 	"math/rand"
 	"os"
@@ -38,7 +38,7 @@ func step(score int) {
 	reader := bufio.NewReader(os.Stdin)
 
 	for {
-		command := cmd.ReadString(reader)
+		command := iohelper.ReadString(reader)
 
 		switch {
 		case strings.Compare(command, "a") == 0:

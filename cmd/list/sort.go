@@ -1,13 +1,13 @@
 package list
 
-func (l *List) QSort() *List {
-	ls := l.qsortGetNodesAsLists()
+func (list *List) QSort() *List {
+	ls := list.qsortGetNodesAsLists()
 
 	return qsortMerge(ls)
 }
 
-func (l *List) BSort() *List {
-	ls := l.GetSlice()
+func (list *List) BSort() *List {
+	ls := list.GetSlice()
 
 	s := CreateBySlice(ls)
 
@@ -17,9 +17,9 @@ func (l *List) BSort() *List {
 	return s
 }
 
-func (l *List) qsortGetNodesAsLists() []*List {
+func (list *List) qsortGetNodesAsLists() []*List {
 	s := make([]*List, 0)
-	for n := l.first; n != nil; {
+	for n := list.first; n != nil; {
 		m := n
 		n = n.Next
 

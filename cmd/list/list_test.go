@@ -1,6 +1,7 @@
 package list
 
 import (
+	"fmt"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -49,4 +50,19 @@ func TestList_GetSlice(t *testing.T) {
 	assert.Equal(t, slice[0], ls[0])
 	assert.Equal(t, slice[1], ls[1])
 	assert.Equal(t, slice[2], ls[2])
+}
+
+func TestList_String(t *testing.T) {
+	list := Create(1, 2, 3)
+
+	assert.Equal(t, "[1 2 3]", fmt.Sprint(list))
+}
+
+func ExampleCreate() {
+	list := Create(1, 2, 3)
+
+	fmt.Println(list)
+
+	// Output:
+	// [1 2 3]
 }

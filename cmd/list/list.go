@@ -1,6 +1,8 @@
 package list
 
-import "reflect"
+import (
+	"fmt"
+)
 
 type List struct {
 	first *Node
@@ -17,15 +19,15 @@ func Create(values ...int) *List {
 	return &List{next}
 }
 
-func (l *List) Append(v int) {
+func (list *List) Append(v int) {
 	n := Node{v, nil, nil}
 
-	if l.first == nil {
-		l.first = &n
+	if list.first == nil {
+		list.first = &n
 		return
 	}
 
-	m := l.first
+	m := list.first
 	for ; m.Next != nil; {
 		m = m.Next
 	}
@@ -33,38 +35,38 @@ func (l *List) Append(v int) {
 	m.SetNext(&n)
 }
 
-func (l *List) Prepend(v int) {
+func (list *List) Prepend(v int) {
 	n := Node{v, nil, nil}
 
-	if l.first == nil {
-		l.first = &n
+	if list.first == nil {
+		list.first = &n
 		return
 	}
 
-	m := l.first
+	m := list.first
 	m.SetPrev(&n)
-	l.first = &n
+	list.first = &n
 }
 
-func (l *List) GetSlice() []int {
+func (list *List) GetSlice() []int {
 	var s []int
 
-	for n := l.first; !reflect.ValueOf(n).IsNil(); n = n.Next {
+	for n := list.first; n != nil; n = n.Next {
 		s = append(s, n.Value)
 	}
 
 	return s
 }
 
-func (l *List) PopFirst() int {
-	if l.first == nil {
+func (list *List) PopFirst() int {
+	if list.first == nil {
 		panic("List is empty")
 	}
 
-	p := l.first
-	l.first = p.Next
-	if l.first != nil {
-		l.first.Prev = nil
+	p := list.first
+	list.first = p.Next
+	if list.first != nil {
+		list.first.Prev = nil
 	}
 	p.Next = nil
 
@@ -73,4 +75,8 @@ func (l *List) PopFirst() int {
 
 func CreateBySlice(s []int) *List {
 	return Create(s...)
+}
+
+func (list List) String() string {
+	return fmt.Sprint(list.GetSlice())
 }

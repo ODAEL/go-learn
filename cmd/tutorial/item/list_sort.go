@@ -1,10 +1,10 @@
-package example
+package item
 
 import (
 	"bufio"
 	"fmt"
-	"go-learn/cmd"
-	"go-learn/list"
+	"go-learn/cmd/iohelper"
+	"go-learn/cmd/list"
 	"os"
 	"strconv"
 	"strings"
@@ -18,7 +18,7 @@ func StartListSort() {
 	myList := list.List{}
 
 	for {
-		command := cmd.ReadString(reader)
+		command := iohelper.ReadString(reader)
 		num, err := strconv.Atoi(command)
 
 		switch {

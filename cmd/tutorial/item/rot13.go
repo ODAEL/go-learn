@@ -1,9 +1,9 @@
-package example
+package item
 
 import (
 	"bufio"
 	"fmt"
-	"go-learn/cmd"
+	"go-learn/cmd/iohelper"
 	"io"
 	"os"
 	"strings"
@@ -16,7 +16,7 @@ func StartRot13() {
 	fmt.Println()
 
 	for {
-		command := cmd.ReadString(reader);
+		command := iohelper.ReadString(reader);
 
 		switch {
 
